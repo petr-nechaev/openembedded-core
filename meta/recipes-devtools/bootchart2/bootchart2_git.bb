@@ -143,6 +143,8 @@ do_install () {
 PACKAGES =+ "pybootchartgui"
 FILES_pybootchartgui += "${libdir}/python*/site-packages/pybootchartgui ${bindir}/pybootchartgui"
 RDEPENDS_pybootchartgui = "python-pycairo python-compression python-image python-textutils python-shell python-compression python-codecs"
+RDEPENDS_${PN} += "${@bb.utils.contains('DISTRO_FEATURES', 'sysvinit', 'sysvinit-pidof', 'procps', d)}"
+RDEPENDS_${PN} += "lsb"
 DEPENDS_append_class-native = " python-pycairo-native"
 
 PACKAGES =+ "bootchartd-stop-initscript"
